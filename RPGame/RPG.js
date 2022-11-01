@@ -1,11 +1,13 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import { Character } from "./Character";
 import {handleDiceHtml,getDiceRollArray, getHealthBarHtml} from "./allFunctions.js"
+import { StateContext } from "../Projects";
 
 const RPG = (props) => {
   const [gameOver, setGameOver] = useState(false);
   const [round, setRound] = useState(0);
   const [result, setResult] = useState("");
+  const {isShown,handleShown} = useContext(StateContext)
 
   const [hero, setHero] = useState({
     name: "Wizard",
@@ -129,9 +131,9 @@ const RPG = (props) => {
   };
 
   return (
-    <div className="rpg">
+    <div className="rpg-project">
       {!started ? (
-        <button className="start-btn" onClick={() => startGame()}>START GAME</button>
+        <button className="rpg-button" onClick={() => startGame()}>START GAME</button>
       ) : (
         <div>
           {!gameOver ? (
@@ -170,13 +172,14 @@ const RPG = (props) => {
             <div className="result-screen"> {result} </div>
           )}
          {!gameOver ? <button
-            className="atk-btn"
+            className="rpg-button"
             onClick={() => {
               round === 0 ? startGame() : nextRound();
             }}
           >
             ATTACK
           </button> : ""}
+          <button className="close-btn" onClick={ () => handleShown(isShown)}> X </button>
           <div> Round: {round} </div>
         </div>
       )}
@@ -185,3 +188,4 @@ const RPG = (props) => {
 };
 
 export { RPG };
+
