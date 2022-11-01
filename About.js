@@ -34,14 +34,31 @@ const About = ({aboutref}) => {
     
     const [changeHtml,setChangeHtml] = useState(false)
 
-    function changeInnerHtml() {
+    const changeInnerHtml = () => {
         setChangeHtml(!changeHtml)
     }
-    
+    const [reveal,setReveal] = useState(false)
+
+    const toggleReveal = () => {
+        if(!reveal){
+            document.querySelector(".icon-area").classList.add("active");
+            document.querySelector(".information-dark").classList.add("activeII")
+            document.querySelector(".reveal-about-me").innerHTML = "close";
+            setReveal(!reveal)
+        }
+        else if(reveal)
+            {
+            document.querySelector(".icon-area").classList.remove("active");
+            document.querySelector(".information-dark").classList.remove("activeII");
+            document.querySelector(".reveal-about-me").innerHTML = "About me";
+            setReveal(!reveal)
+        }
+    }
+
     return(
         <div className="container">
             <div ref={aboutref} className=" about">
-                <div className="observerClass icon-area" ref={targetRef}>
+                <div className="icon-area" ref={targetRef}>
 
                     <div className="html-icon">
                         <img className={ isVisible? "icons show1" : "icons "} src="icons8-html-5.svg" alt=""></img>
@@ -55,18 +72,18 @@ const About = ({aboutref}) => {
                     <div className="react-icon">
                         <img className={ isVisible? "icons show4" : "icons"} src="react-2.svg" alt=""></img>
                     </div>
-
+                    <button className="reveal-about-me" onClick={toggleReveal}> About me</button>
                 </div>
                
 
                 
-                <div id="blink" className="blink light"  ref={targetRef} onClick={changeInnerHtml}>
+                <div id="blink" className="blink information-light"  ref={targetRef} onClick={changeInnerHtml}>
 
                     <p className="s"> i </p>
 
                 </div>
                 
-                <div className="aboutMe observerClass dark" ref={targetRef}>
+                <div className="information-dark" ref={targetRef}>
                     { !changeHtml ?
                         <div>
                         
@@ -77,8 +94,7 @@ const About = ({aboutref}) => {
 
                         </div> : 
                         <div> 
-                            <hr></hr>
-                            <p>Aber keine Sorge, als Person bin ich bei Weitem nicht so kompliziert wie mein Name<span role="img" aria-label="laughing smiley">😜</span></p>
+                            <p>Und keine Sorge, als Person bin ich bei Weitem nicht so kompliziert wie mein Name<span role="img" aria-label="laughing smiley">😜</span></p>
                         </div>
                     }
                 </div>
