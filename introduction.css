@@ -1,0 +1,112 @@
+
+.introduction{
+    height: 100vh;
+    padding-top: var(--headerHeight);
+    color: var(--clr-second);
+    position: relative;
+    margin: 0 auto;
+    font-size: 2rem;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: flex-start;
+  
+  }
+  
+  /* ANIMATED NAME */
+  .name-area{
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    align-items: flex-start;
+    padding: 3rem;
+    gap: 2rem;
+  }
+  .name-area::before{
+    content: "Hi , my name is";
+    width: auto;
+    height: auto;
+    opacity: 0.7;
+  }
+  
+  .name{
+    font-style: italic;
+    font-weight: 700;
+    font-size: clamp(4rem,10vw,12rem);
+    display: flex;
+    opacity: 0.9;
+    color:var(--clr-bg);
+    text-shadow: 2px 12px 2rem var(--clr-prime);
+    
+  }
+  .animatedName{
+    font-size: clamp(4rem,12vw,12rem);
+  }
+  .selfie{
+    margin-top: 5rem;
+    border-radius: 5rem;
+    width: 25rem;
+    height: auto;
+  }
+  .selfie-img{
+    width: 25rem;
+    height: auto;
+    opacity: 0.70;
+  
+  }
+  .email-link > img{
+    transform: translateX(20px);
+  }
+  .email-link{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 2px solid var(--clr-prime);
+    padding: 1rem 3vw;
+    color: var(--clr-prime);
+    text-decoration: none;
+    transition: all 300ms ease-in-out;
+  }
+  .email-link:hover,
+  .email-link:focus{
+    color: black;
+    background-color: var(--clr-prime);
+    font-weight: 700;
+    border-radius: 20px;
+  }
+  .email-link:focus > .paperplane,
+  .email-link:hover > .paperplane{
+    animation: flyaway 2500ms forwards ease-in-out;
+  }
+  .paperplane{
+    width: 60px;
+    height: 60px;
+    offset-path: path("M1.1,29.1c0,0,371.7,15.8,6771.7-1861.9");
+  }
+  .gradient{
+    align-self: center;
+    font-size: 3vmax;
+    padding: 1rem;
+    background: linear-gradient(transparent 92% , var(--clr-prime));
+    border-bottom: 2px solid var(--clr-prime);
+    border-radius: 50%;
+    margin-bottom: 1rem;
+    opacity: 0.7;
+  }
+  @keyframes flyaway {
+    0%{
+      scale:1;
+      rotate:-15deg;
+      offset-distance: 0%;
+    }
+    50%{
+      scale: 0.5;
+    }
+   100%{
+      rotate: -50deg;
+      scale:0;
+      offset-distance: 80%;
+    }
+  }

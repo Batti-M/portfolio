@@ -1,0 +1,246 @@
+
+/* Projects */
+
+.projects{
+    padding-top: var(--headerHeight);
+    width: 60%;
+    height: 75vh;
+    color: var(--clr-second);
+    display: flex;
+    justify-content:center;
+    align-items: center;
+    position: relative;
+  }
+  
+  .project{
+    display: flex;
+    justify-content: space-between;
+    align-self: flex-start;
+    align-items: center;
+    text-align: center;
+    position: absolute;
+    width: 100%;
+    height: 70vh;
+    max-height: 70vh;
+    padding: 2.5rem;
+    border-radius: 1.5rem;
+  }
+  .project-info{
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content:space-around;
+    align-items: center;
+    font-size: min(1.4rem,2vw);
+    transition: all 450ms ease-in;
+    position: relative;
+  }
+ 
+  .project-name > *{
+    opacity: 1;
+    font-size: 5vh;
+  }
+  
+  .project-name {
+    color: var(--clr-prime);
+    text-transform: uppercase;
+    font-style: italic;
+    opacity: 0.96;
+    padding: 2rem;
+    background-color: rgba(0,0,0,0.5);
+    outline: none;
+    border: none;
+    text-decoration: underline;
+    font-size: clamp(2rem,10vw,4rem);
+  }
+  .project-img{
+    margin:0;
+    width:200px;
+    height:115%;
+    box-shadow: 15px 15px 15px var(--clr-second);
+    border-radius: 5px;
+  }
+  
+  .project-description{
+    padding: 2rem;
+    background-color: rgba(0,0,0,0.3);
+    width:70%;
+  }
+  .project-links{
+    display: flex;
+    flex-direction: row;
+    width: auto;
+    justify-content: center;
+    align-items: center;
+    padding: 1rem 1rem;
+    gap: 4rem;
+    background-color: rgba(0,0,0,0.3);
+  }
+ 
+  .project-logo{
+    width: 3rem;
+    height: 3rem;
+    position: relative;
+    transition: all 400ms ease-in;
+  }
+  
+  .project-logo::after{
+    content: "";
+    position: absolute;
+    display: block;
+    transition: all 400ms ease-in;
+    width:0;
+    height:2px;
+    background-color: var(--clr-prime);
+    top: 3.5rem;
+    left: 0
+  }
+  .project-logo:hover::after{
+    width: 100%;
+  }
+  .project-sample{
+    position: absolute;
+    top:0;
+    left: 10%;
+  }
+  .project-sample > rpg-project {
+    left: 30%;
+  }
+ .project-btn{
+    background-color: rgb(165, 166, 167);
+    padding: 1em 2em;
+    font-weight: bold;
+    font-size: 1.5rem;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+  .project-btn:hover{
+    border: 2px solid var(--clr-prime);
+    text-decoration: underline;
+    transition: all 400ms  ease-in;
+    background-color: var(--clr-prime);
+  }
+  .grow-anim{
+    animation: slide-left 400ms forwards cubic-bezier(0.68,-0.51, 0, 0.74)
+  }
+  .dontShow{
+    opacity: 0.5;
+    transition: opacity 200ms ease-in-out;
+  }
+  .Roleplay-Game,
+  .Meme-Generator,
+  .Catmehappy{
+    position: relative;
+    width: 100%;
+    height:100%;
+  }
+  
+  .Roleplay-Game::after{
+    content: "";
+    position: absolute;
+    z-index: -1;
+    width: 100%;
+    height: 100%;
+    top:0;
+    left:0;
+    bottom: 0;
+    right: 0;
+    background: url("./RPGame/rpg-game.png");
+    background-size: cover;
+    opacity: 0.2;
+  }
+  .Meme-Generator::after{
+    content: "";
+    position: absolute;
+    z-index: -1;
+    width: 100%;
+    height: 100%;
+    top:0;
+    left:0;
+    bottom: 0;
+    right: 0;
+    background: url("./memeGeneratorNew.png");
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+    opacity: 0.2;
+  }
+  .Catmehappy::after{
+    content: "";
+    position: absolute;
+    z-index: -1;
+    width: 100%;
+    height: 100%;
+    top:0;
+    left:0;
+    bottom: 0;
+    right: 0;
+    background: url("./catmehappy/catmehappy.png");
+    background-size: cover;
+    opacity: 0.2;
+  }
+
+  
+  @keyframes slide-left {
+    0%{
+      opacity: 0;
+      transform: translateX(150px);
+    }
+    50%{
+      
+    }
+    100%{
+      opacity: 1;
+      transform: translateX(0px);
+    }
+  }
+
+  /*carousel */
+  #prev, #next{
+    padding: 0.5rem;
+    font-size: 4rem;
+    opacity: 0.5;
+    color:white;
+    background-color: var(--clr-shadow);
+    position: absolute;
+    top: 50%;
+    z-index: 9999;
+    transform: translateY(-50%);
+    border: 1px solid white;
+  }
+  #prev:hover,
+  #next:hover{
+    opacity: 0.8;
+  }
+  #prev{
+    left: 1rem;
+  }
+  #next{
+    right: 1rem;
+  }
+  @media screen and (max-width: 400px) {
+  .project-info{
+    font-style: italic;
+    height: 30vh;
+    padding: 1rem;
+  }
+  .project-name > *{
+    font-size: 4vh;
+  }
+  .project-description{
+    font-size: 1.2rem;
+  }
+  .project-img{
+    display: none;
+  }
+  .project-btn{
+    transition: all 200ms ease-in-out;
+    padding: 0.75rem 1.5rem;
+  }
+
+  .project-btn :hover,
+  .project-btn :focus{
+    background-color: var(--clr-prime)
+  }
+}

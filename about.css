@@ -1,0 +1,213 @@
+
+.about{
+    padding-top: calc(var(--headerHeight)*2);
+    display: flex;
+    flex-direction: column;
+    height: auto;
+    width: 80vw;
+    gap: 10vh;
+    margin: 0 auto;
+    position: relative;
+    justify-content:flex-start;
+    align-items:center;
+    text-align: center;
+    margin-bottom: auto;
+  }
+ 
+  .information-dark,
+  .information-light{
+    font-weight: 700;
+    padding: 5rem;
+    border-radius: 2rem;
+    font-size: 2rem;
+  
+  }
+  
+  .information-dark{
+    background-color: var(--clr-shadow);
+    color: var(--clr-second);
+    opacity: 0.8;
+    width: 80%;
+    font-size: 1.5rem;
+    transition: all 400ms ease-in;
+    border: 1px solid var(--clr-prime);
+    opacity: 0;
+    transform: translateY(20%);
+  }
+  .information-light{
+    background-color: var(--clr-second);
+    color: rgb(17, 15, 15); 
+    width: 5rem;
+    height: 5rem;
+    padding: 0
+  }
+  .information-light:hover{
+    cursor: pointer;
+  }
+  .blink{
+    position: absolute;
+    z-index: 99;
+    top:10%;
+    right:10%;
+    font-size: 4rem;
+    animation: blob 750ms infinite
+  }
+  .active{
+    transform: translateY(-10%);
+    transition: all 400ms ease-in;
+    opacity: 0.7;
+    scale: 0.8
+  }
+  .activeII{
+    transform: translateY(-30%);
+    transition: all 400ms ease-in;
+    opacity: 1;
+  }
+  .reveal-about-me{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    bottom: 0;
+    width: 70px;
+    height: 70px;
+    left: 50%;
+    padding: 1rem 2rem;
+    transform: translate(-50%,50%);
+    border-radius: 50%;
+    color: var(--clr-prime);
+    background-color: rgba(27, 26, 26);
+    border: 2px solid var(--clr-prime);
+    text-transform: uppercase;
+    outline: none;
+    transition: transform,background-color,scale;
+    transition-timing-function: ease;
+    transition-duration: 400ms;
+  }
+  .reveal-about-me:hover{
+    transform: translate(-50%,25%) scale(1.04);
+  }
+  .reveal-about-me:active{
+    transform: translateX(-50%,25%) scale(0.85)
+  }
+  .icon-area{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-wrap:wrap;
+    gap: 6vw;
+    position:relative;
+    height: 50%;
+    width: 80%;
+    padding: 2rem;
+    transition: all 400ms ease-in;
+    background-color: rgb(7, 23, 29);
+    border-radius: 1rem;
+    border: 1px solid var(--clr-prime);
+    z-index: 2;
+  }
+  
+  .icons{
+    opacity: 0;
+    width:150px;
+    height:150px;
+    box-shadow: 0 0 1.5rem var(--clr-shadow);
+    border-radius: 1rem;
+  }
+  
+  .icons:hover{
+    box-shadow: 0 0 1.5rem var(--clr-second);
+  }
+  /* ICON HOVER*/
+  .html-icon::after,
+  .react-icon::after,
+  .css-icon::after,
+  .js-icon::after{
+    position: absolute;
+    font-size: 1.5rem;
+    font-weight: bold;
+    width:0;
+    height:0;
+    opacity: 0;
+    top:-5%;
+    left:10%;
+    border-radius: 1.5rem;
+    font-weight: bold;
+    color:var(--clr-shadow);
+    background-color: var(--clr-prime);
+}
+  .html-icon::after{
+    content: "HTML bildet die Struktur einer Webseite und steht für HyperText Markup Language";
+  }
+  
+  .react-icon::after{
+    content: "React ist ein Javascript-Framework, dessen Aufbau auf Komponenten basiert. Facebook z.B. wurde mit React gebaut";
+  }
+  .css-icon::after{
+    content: "CSS steht für Cascading Stylesheets - es gibt der Webseite ihr Styling";
+  }
+  .js-icon::after{
+    content: "Javascript gibt der Webseite ihre Funktionalität ,wie z.B. das Drücken eines Buttons";
+  }
+  .html-icon:hover::after,
+  .react-icon:hover::after,
+  .css-icon:hover::after,
+  .js-icon:hover::after
+  {
+    transition: all 300ms ease-in;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 50%;
+    height: auto;
+    opacity: 1;
+    padding: 1rem
+  }
+  
+  .show1{
+    opacity: 0;
+    animation: slide 2s forwards 0.1s;
+  }
+  .show2{
+    opacity: 0;
+    animation: slide 2s forwards 0.3s;
+  }
+  
+  .show3{
+    opacity:0;
+    animation: slide 2s forwards 0.5s;
+  }
+  
+  .show4{
+    opacity: 0;
+    animation: slide 2s forwards 0.7s;
+  }
+  
+  
+  .blobanimation{
+    color: var(--clr-prime);
+    animation: blob 1s; 
+  }
+  
+  @keyframes blob{
+    from, to { transform: scale(1, 1.2); }
+    25% { transform: scale(0.9, 1.1); }
+    50% { transform: scale(1.1, 0.9); }
+    75% { transform: scale(0.95, 1.05); }
+  }
+  @keyframes slide {
+    0%{
+      opacity: 0.1;
+      transform: translateX(-30%);
+    }
+    50%{
+      opacity: 0.5;
+      transform: translateX(50%)
+    }
+    100%{
+      opacity: 1;
+      transform: translateX(0%);
+    }
+  }
+  
+  

@@ -1,0 +1,113 @@
+
+/*  scroll navigator */
+.line{
+    height: 50vh;
+    opacity: 0.5;
+    width:2px;
+    background-color: var(--clr-prime);
+    position: absolute;
+    top:var(--headerHeight);
+    z-index: 2;
+    left:5vw;
+    box-shadow: 5px 5px 0.5rem var(--clr-second),
+   0 0 0.8rem var(--clr-prime);
+  }
+  .scroll-navigator{
+    position: fixed;
+    top: -60%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    transition: all 300ms ease-in-out;
+  }
+  
+  .scroll-nav-btn{
+    position: absolute;
+    z-index: 99;
+    left: 2.5vw;
+    opacity: 1;
+    padding: 1.3vw;
+    display: flex;
+    justify-content:space-between;
+    align-items: center;
+    background-color: rgb(7, 23, 29);
+    border: 0.2rem solid var(--clr-prime);
+    box-shadow: 0 0.3rem 0.3rem var(--clr-shadow);
+    border-radius: 1rem;
+    color: var(--clr-second);
+    font-weight: 900;
+  }
+  
+  .scroll-navigator-project{
+    top: 30vh
+  }
+  .scroll-navigator-about{
+    top: 20vh
+  }
+  .scroll-navigator-content{
+    top: 10vh
+  }
+  .scroll-nav-btn:hover{
+    opacity: 1;
+  }
+  
+  .scroll-nav-btn > img{
+    justify-self: flex-start;
+    width: 3rem;
+    height: 3rem;
+    
+  }
+  
+  .scroll-navigator-project:hover::after{
+    position: relative;
+    transition: all 300ms forwards ease-in;
+    content: "See my projects";
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 1rem;
+    padding: 0;
+    width:11rem;
+    height: 2rem
+  }
+  .scroll-navigator-about:hover::after{
+    content: "my techstack";
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius:1rem;
+    padding: 0;
+    width: 11rem;
+    height: 2rem;
+  }
+  .scroll-navigator-content:hover::after{
+    content: "home";
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 1rem;
+    padding: 0;
+    width: 11rem;
+    height: 2rem;
+  }
+  .scroll-nav-btn:hover{
+    z-index: 9;
+    transition: all 500ms forwards ease-in;
+    color: var(--clr-shadow);
+    animation: slide2 0.7s ease-in forwards; 
+  }
+  @keyframes slide2 {
+      0%{
+        transform:  translateX(-10%);
+      }
+      50%{
+        transform: translateX(10%);
+      }
+      100%{
+        transform:translateX(0%);
+        background-color: var(--clr-prime);
+      }
+  
+    }
+    
