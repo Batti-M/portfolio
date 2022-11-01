@@ -1,6 +1,16 @@
-
+.rpg{
+    display: flex;
+    background-color: var(--clr-bg);
+    opacity: 1;
+    gap: 2rem;
+}
+.rpg-project{
+    position: absolute;
+    top:0;
+    left: 30%;
+}
 .avatar {
-    width: 15vh;
+    width:18vh;
     border: 2px solid #000721;
     max-width:100%;
     opacity: 0.8;
@@ -9,18 +19,22 @@
 }
 
 .character-card {
-    height:14rem;
+    height:45vh;
     margin-top: .5rem;
-    width:94vw;
+    width: 40vw;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 1rem;
     max-width: 230px;
     padding: 1vh 1vw;
     font-size: 1.6rem;
     color: white;
     border-radius: 14px;
     position: relative;
-    background: #231d24;
     text-align: center;
-    border: 0.08rem solid #000721;
+    border: 0.08rem solid #485fb4;
     box-shadow: inset 0px 0px 6px 2px rgba(100,100,100,0.2),
                 0px 0px 10px rgba(117,182,214,0.2);
 }
@@ -29,33 +43,19 @@
     margin: 1vh 0;
     width:100%;
     letter-spacing: 0.08em;
-    font-size: 90%;
-}
-
-.avatar {
-    width: 15vh;
-    border: 2px solid #000721;
-    max-width:100%;
-    opacity: 0.8;
-    border-radius: 10px;
-    background-color: rgba(0, 7, 33, 0.8);
+    font-size: 2.5rem;
 }
 
 .health {
-    font-size:1.1rem;
+    font-size:1.6rem;
     font-weight: normal;
     width:90%;
     text-align: left;
     margin: 1vh 5%;
     color:#ccc;
-    letter-spacing: 0.03em
-}
-
-
-.health {
+    letter-spacing: 0.03em;
     margin: 2vh 5%;
 }
-
 
 .health b {
     font-weight: bold;
@@ -64,8 +64,8 @@
 
 .health-bar-outer {
     background: #171217;
-    height: 50px;
-    width:300px;
+    height: 2rem;
+    width:100%;
     border-radius: 2px;
 }
 
@@ -80,9 +80,8 @@
 }
 
 .dice-container {
-    width:100%;
-    height: 20%;
-    position: absolute;
+    width:90%;
+    height: 4rem;
     bottom:0;
     left:0px;
     right:0;
@@ -94,40 +93,39 @@
     border-bottom-left-radius: 14px;
     border-bottom-right-radius: 14px;
 }
+.dice{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 1rem;
+    font-size: 1.7rem;
+    background-color: #f7e4b2;
+    height: 2rem;
+    width: 2rem;
+    color: rgb(53, 53, 53);
+    font-weight: bold;
+    border-radius: 0.5rem;
+    margin: 0.2rem;
 
-@media(min-width:550px){
-    .dice-container {
-        height: 30%;
-        border-bottom-left-radius: 3px;
-        border-bottom-right-radius: 3px;
-    }
 }
+.result-screen{
+    width: 200px;
+    height: 100px;
+    margin: 0.5rem;
+    padding: 1rem;
+    background-color: var(--clr-prime);
+    color: black;
+    font-weight: bold;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-transform: uppercase;
+    font-size: 2rem;
+    position: relative
+  }
 
-.dice, .placeholder-dice{
-    height:5.5vh;
-    width:5.5vh;
-    background: #fff;   
-    border-radius: 5px;
-    border:1px solid #666;
-    color:#000721;
-    text-align: center;
-    line-height: 6vh;
-}
-
-@media(min-width:550px){
-.dice-container .dice, .dice-container .placeholder-dice{
-    height:10vh;
-    width:10vh;
-    line-height: 10.5vh;
-}
-}
-
-.dice-container .placeholder-dice{
-    background-color: transparent;
-}
-
-button {
-    margin-top: .5rem;
+.rpg-button {
+    margin-top: 0.5rem;
     font-family: 'MedievalSharp', cursive;
     background-color: #fcc02a;
     border: 2px solid #963404;
@@ -146,6 +144,14 @@ button {
 }
 
 @media(min-width:550px){
+    .dice-container {
+        height: 20%;
+        border-bottom-left-radius: 3px;
+        border-bottom-right-radius: 3px;
+    }
+}
+
+@media(min-width:550px){
     button {
         margin-top: 0;
     }
@@ -154,11 +160,3 @@ button {
 
 button:focus { outline: 0 }
 
-.end-game{
-    margin-top: 25%;
-    text-align: center;
-}
-
-.end-emoji{
-    font-size: 80px;
-}
