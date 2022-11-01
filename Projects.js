@@ -4,9 +4,11 @@ import {MemeGenerator} from "./MemeGenerator"
 import {RPG} from "./RPGame/RPG"
 import {CatApp} from "./catmehappy/CatApp"
 
+
 export const StateContext = React.createContext()
 
-const Project = ({projectName,projectImg,projectDescription,project}) => {
+const Project = ({projectName,projectImg,projectDescription,project,githublink,id}) => {
+   
 
    // handle animation
    const targetRef = useRef()
@@ -21,7 +23,7 @@ const Project = ({projectName,projectImg,projectDescription,project}) => {
         return {
            root: null,
            rootMargin: "0px",
-           threshold: 0.4
+           threshold: 0.2
         }
    },[])
 
@@ -29,7 +31,7 @@ const Project = ({projectName,projectImg,projectDescription,project}) => {
        const observer = new IntersectionObserver(callbackFuntion,options)
        const currentTarget = targetRef.current;
        if(currentTarget) observer.observe(currentTarget)
-
+       
        return () => {
            if(currentTarget) observer.unobserve(currentTarget)
        }
@@ -40,21 +42,14 @@ const Project = ({projectName,projectImg,projectDescription,project}) => {
    const handleShown = (prev) => {
      setIsShown(prev => !prev)
   }
-   //handle gif on mouseover
-   const [isHovering,setIsHovering] = useState(false)
 
-   const handleMouseOver = () => {
-      setIsHovering(true);
-    };
-  
-    const handleMouseOut = () => {
-      setIsHovering(false);
-    };
-
+   
    return (
-      <div ref={targetRef} className={isVisible ? "project projectAnimation" : "dontShow"}>
-         <div className="project-info">
-            <div className="project-name projectAnimation">
+      <StateContext.Provider value={{isShown,setIsShown,handleShown,targetRef}}>
+         
+      <div ref={targetRef} className={isVisible ? "project grow-anim" : "dontShow"} >
+         <div className={`project-info ${projectName}`}>
+            <div className="project-name ">
                
                <AniLetter>  {projectName} </AniLetter>  
                
@@ -62,49 +57,76 @@ const Project = ({projectName,projectImg,projectDescription,project}) => {
             <div className="project-description">
                {projectDescription}
             </div>
-               <StateContext.Provider value={{isShown,setIsShown,handleShown}}>
-               <div className="project-links">
-                  <div className="project-sample"> {isShown ? [project] : ""} </div>
-                  <div className="flex-row">
-
-                     <button className="project-btn" onClick={handleShown}> 
-                     {!isShown ? "Try it out!" : "Close"}</button>
-                     <a className="project-logo" href="https://github.com/batti-mies"><img className='logos' src="GitHub.png" alt="github-icon" /></a>
-
-                  </div>
+            <div className="project-links">
+               
+               <div  >
+                  <button className="project-btn" onClick={handleShown}> 
+                  {!isShown ? "Try it out!" : "Close"}</button>
                </div>
-               </StateContext.Provider>  
-         </div>
-         <div onMouseOver ={handleMouseOver} onMouseOut={handleMouseOut} className="proj-img"> 
-            
-            {/* <div style={{display: isHovering ? "block" : "none"}} className=".project-img-div">
-               <img className="project-img-div"alt="" src={`${gifsrc}`} /> 
-            </div>  */}
-           
-            <div>
-            <img alt="" src={projectImg} className="project-img"/> 
+               <div className="git">
+                  <a href={githublink}><img className='logos project-logo' src="GitHub.png" alt="github-icon" /></a>
+               </div>
+
             </div>
-           
+            <div className="project-sample"> {isShown ? [project] : ""} </div>
          </div>
+
       </div>
+      </StateContext.Provider>  
    )
 }
 
 
 const Projects = ({projectref,isShown,setIsShown,handleShown}) => {
- 
-  
-   const rpgDescription = "ursprünglich war das RP-Game ein Vanilla Javascript Projekt. Um meine React-Skills zu verbessern, habe ich das das Game in React-Syntax umgewandelt. Testen Sie es und retten Sie die Welt ;)"
+   
+   const [carouselIndex,setCarouselIndex] = useState(0)
+   const rpgDescription = "ursprünglich war das RP-Game ein Vanilla Javascript Projekt. Um meine React-Skills zu verbessern, habe ich das das Game in React-Syntax umgewandelt."
    const memeDescription = "Der Meme-Generator ist ein React Projekt - Fokus hierbei lag auf dem Erlernen verschiedener React-hooks sowie Übung mit API Schnittstellen"
    const capstoneDescription = "CatMeHappy ist auch ein React Projekt -  es handelt sich um einen Onlineshop für Katzenbilder. Erlernen&Erstellen von costum hooks stand hierbei im Vordergrund "
+   
+   const increment = () => {
+      if(carouselIndex === 2) 
+      setCarouselIndex(0)
+      else setCarouselIndex(prev => prev+1)
+      console.log(carouselIndex)
+   }
+   const decrement = () => {
+      if(carouselIndex === 0) 
+      setCarouselIndex(2)
+      else setCarouselIndex(prev => prev-1)
+   }
   
    return(
-      <div ref={projectref} class="container container-large">
+      <div class="container">
          <div ref={projectref} className="projects">
-         
-            <Project project={<RPG isShown={[isShown,setIsShown]} handleShown={handleShown} />} gifsrc={"rpg.gif"} projectName={"Roleplay Game"} projectImg={"rpg-game.png"} projectDescription={rpgDescription} />
-            <Project project={<MemeGenerator isShown={isShown} handleShown={handleShown} />} gifsrc={"meme.gif"} projectName={"Meme-Generator"} projectImg={"memeGeneratorNew.png"} projectDescription={memeDescription}/> 
-            <Project project={<CatApp isShown={isShown} handleShown={handleShown}/>} gifsrc={"capstone.gif"} projectName={"Catmehappy  "} projectImg={"capstone.png"} projectDescription={capstoneDescription}/> 
+            <button onClick={increment}id="next">&#8658;</button>
+            <button onClick={decrement}id="prev">&#8656;</button>
+            {carouselIndex === 0 ?
+            <Project 
+            project={<RPG />}
+            projectName={"Roleplay-Game"} 
+            projectImg={"rpg-game.png"} 
+            projectDescription={rpgDescription}
+            githublink={"https://github.com/Batti-M/portfolio/tree/main/RPGame"}
+            /> : ""}
+
+            {carouselIndex === 1 ?
+            <Project 
+            project={<MemeGenerator />}
+            projectName={"Meme-Generator"} 
+            projectImg={"memeGeneratorNew.png"} 
+            projectDescription={memeDescription}
+            githublink={"https://github.com/Batti-M/portfolio/blob/main/MemeGenerator.js"}
+            /> : ""}
+
+            {carouselIndex === 2 ?
+            <Project 
+            project={<CatApp isShown={isShown} handleShown={handleShown}/>} 
+            projectName={"Catmehappy"} 
+            projectImg={"capstone.png"} 
+            projectDescription={capstoneDescription}
+            githublink={"https://github.com/Batti-M/portfolio/tree/main/catmehappy"}
+            /> : " "}
            
          </div>
          
